@@ -1,7 +1,7 @@
-<div class="d-none d-sm-none d-md-block d-lg-block">
-    <div class="sidebar-wrapper">
+<div *ngIf="isLoggedIn$ | async as isLoggedIn" class="d-none d-sm-none d-md-block d-lg-block">
+    <div class="sidebar-wrapper" >
       <div class="logo-wrapper">
-        <a href="/dashboard" class="logo" title="Shopgig">
+        <a class="logo" title="Shopgig">
           <img src="./assets/images/shopgig.png" width="" height="" alt="Shopgig"
             class="logo-desktop" />
           <img src="./assets/images/shopgig-toggle.png" class="logo-toggle" width="" height=""
@@ -33,9 +33,7 @@
             <a  class="sidebar-link" title="Category">
               <i class="icon-profile-management"></i>&nbsp;&nbsp;<span>Category</span>
             </a>
-          </li>
-  
-         
+          </li>         
           <li class="sidebar-list"  style="cursor: pointer">
             <a class="sidebar-link" title="Inventory">
               <i class="icon-settings"></i>&nbsp;&nbsp;<span>Inventory</span>
@@ -53,11 +51,6 @@
       </div>
     </div>
   </div>
-  
-  
-  
-  
-  
   
   <div class="d-block d-sm-block d-md-none d-lg-none">
   
@@ -114,11 +107,7 @@
               <i class="fas fa-ticket-alt"></i>&nbsp;&nbsp;<span>Plans</span>
             </a>
           </li>
-  
-          
-  
-  
-  
+    
           <li class="sidebar-list"  style="cursor: pointer">
             <a  class="sidebar-link" title="Reports">
               <i class="icon-reports"></i>&nbsp;&nbsp;<span>Reports</span>

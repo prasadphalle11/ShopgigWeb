@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <title>Login Screen</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel='stylesheet' href='/assets/css/bootstrap.min.css' />
+  <link rel='stylesheet' href='/assets/css/custom.css' />
+  <link rel='stylesheet' href='/assets/css/responsive.css' />
+</head>
+
+<body class="login-page">
+  <main class="main-content">
+    <div class="login-form-wrapper">
+      <div class="login-form-radius">
+        <div class="login-form-head">
+          <a href="/" title="Shop Connector">
+            <img src="./assets/images/shopgig.png" width="250" height="36" alt="Shop Connector" />
+          </a>
+        </div>
+        <div class="login-form-content">
+          <h2 class="text-darkgrey text-16 font-semibold">Login with your email Id and password</h2>
+          <form [formGroup]="LogInForm" (ngSubmit)="OnSign()" #myform="ngForm">
+            <div class="form-group form-group-design text-left">
+              <label for="email">Email</label>
+              <input type="text" id="email" formControlName="email" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.email.errors }"  value="Jon.Cooper@abc.com"/>
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">Please Enter the Email-ID</div>
+                <div *ngIf="f.email.errors.email">Email-Id is invalid</div>
+              </div>
+            </div>
+            <div class="form-group form-group-design text-left">
+               <label for="password">Password</label>
+              <input type="text" id="password" formControlName="password" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
+              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+              <div *ngIf="f.password.errors.required">Please Enter the Password.</div>
+              <div *ngIf="f.password.errors.minlength">
+                Password must be at least 8 characters
+              </div>
+            </div>
+            </div>
+            <div class="form-check d-flex justify-content-start mb-4">
+              <input class="form-check-input" type="checkbox" value="" id="form1Example3" />
+              <label class="form-check-label" for="form1Example3"> Remember password </label>
+            </div>
+
+            <button type="submit" class="primary-bttn"  (click)="OnSign()" title="Sign in">Sign in</button><br>
+          
+          </form>
+
+          <a href="/Forgot_PasswordComponent" class="forgot-psw-link text-16 text-blue font-semibold"
+            (click)="OnForgot()" title="I forgot my password">I forgot my password</a>
+          <a href="/Registration_PageComponent" class="new-mbrshp-link text-16 text-blue font-semibold"
+            (click)="OnRegister()" title="Register a new Membership">Register a new Membership</a>
+        </div>
+      </div>
+      <p class="copyright-content text-12 text-darkgrey">Copyright © 2014-2019. All rights Reserved</p>
+    </div>
+  </main>
+
+  <script type="text/javascript" src='./assets/js/jquery-3.5.1.min.js'></script>
+  <script type="text/javascript" src='./assets/js/popper.min.js'></script>
+  <script type="text/javascript" src='./assets/js/bootstrap.min.js'></script>
+  <script type="text/javascript" src='./assets/js/custom.js'></script>
+</body>
+
+</html>
