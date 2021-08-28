@@ -21,6 +21,7 @@
     "@angular/router": "~11.2.14",
     "@ng-bootstrap/ng-bootstrap": "^9.1.3",
     "bootstrap": "^5.0.0-beta3",
+    "ngx-pagination": "^5.1.1",
     "p-dialog-modal": "^1.2.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

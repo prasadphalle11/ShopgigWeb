@@ -35,9 +35,10 @@ export class InventoryCategoryComponent implements OnInit {
     this.deletemodal = "Delete Inventory";
     this.api.deleteCategoryAPI(Id).subscribe(data => {
      this.CategoryAPI();
-    }, (err) => {
+      }, (err) => {
       alert("Error while deleting");
-    })
+      })
+    
   }
   CategoryAPI() {
     this.api.getCategoryAPI().subscribe((data: any) => {

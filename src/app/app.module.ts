@@ -16,6 +16,7 @@ import { StoreComponent } from './store/store.component';
 import { InventoryCategoryComponent } from './InventoryCategory/InventoryCategory.component';
 import { FormsModule } from '@angular/forms';
 import { AddEditStoreComponent } from './store/add-edit-store/add-edit-store.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { AddEditStoreComponent } from './store/add-edit-store/add-edit-store.com
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
 
   ],
   providers: [AuthService, AuthGuard],
