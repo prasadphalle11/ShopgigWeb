@@ -1,0 +1,68 @@
+<div>
+
+    <form class="row g-3">
+        <div class="col-md-6">
+          <label for="inputUserId4" class="form-label">UserId</label>
+          <input type="text" class="form-control" [(ngModel)]="store.UserId" name="this.UserId" id="inputUserId4">
+        </div>
+        <div class="col-md-6">
+          <label for="name4" class="form-label">Store Name</label>
+          <input type="text" class="form-control" [(ngModel)]="store.Name" name="this.Name" id="name4">
+        </div>
+        <div class="col-md-6">
+          <label for="createdon4" class="form-label">CreatedOn</label>
+          <input type="date" class="form-control" [(ngModel)]="store.CreatedOn" name="this.CreatedOn" id="createdon4">
+          <!-- <p-calendar [(ngModel)]="store.CreatedOn" [showIcon]="true" inputId="icon"></p-calendar> -->
+        </div>
+        <div class="col-md-6">
+          <label for="createdby" class="form-label">CreatedBy</label>
+          <input type="text" class="form-control" [(ngModel)]="store.CreatedBy" name="this.CreatedBy" id="created4">
+        </div>
+        <div class="col-md-4">
+            <label for="inputSupportsMultipleLang" class="form-label">SupportsMultipleLang</label>
+            <select id="inputSupportsMultipleLang" class="form-select">
+              <option selected>Choose...</option>
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Upload Background Image</label>
+            <input class="form-control" [(ngModel)]="store.BackGroundImage" name="this.BackGroundImage" type="file" id="formFile">
+        </div>
+        <div class="col-12">
+            <label for="theme" class="form-label">Theme</label>
+            <input type="text" class="form-control" [(ngModel)]="store.Theme" name="this.Theme" id="theme" >
+        </div>
+        <div class="col-12">
+            <label for="tagline" class="form-label">Tagline</label>
+            <input type="text" class="form-control" [(ngModel)]="store.TagLine" name="this.TagLine" id="tagline" >
+        </div>
+        <div class="col-12">
+            <label for="route" class="form-label">StoreRoute</label>
+            <input type="text" class="form-control" [(ngModel)]="store.StoreRoute" name="this.StoreRoute" id="route" >
+        </div>    
+        <div class="col-12">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <label class="form-check-label" for="gridCheck">
+              Check me out
+            </label>
+          </div>
+        </div>
+    
+        <!-- <div class="col-12">
+          <button (click)="addStore()" type="submit" class="btn btn-primary">Add</button>
+        </div > -->
+        
+    </form>
+    
+      <button (click)="addStore()" *ngIf="store.Id == 0 " class="btn btn-primary">
+        Add
+      </button>
+    
+      <button (click)="updateStore()" *ngIf="store.Id !=0" class="btn btn-primary">
+        Update
+      </button>
+    
+</div>

@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  title = 'ShopgigWeb';
+  title = 'ShopGIGWeb';
 
   blankUrl = '';
 	currentUrl: string;

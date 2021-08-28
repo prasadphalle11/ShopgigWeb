@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup ,FormBuilder,Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
   selector: 'app-Forgot_Password',
-  templateUrl: './Forgot_Password.component.html',
-  styleUrls: ['./Forgot_Password.component.css']
+  templateUrl: './Forgot_Password.html',
+  styleUrls: ['./Forgot_Password.css']
 })
-export class Forgot_PasswordComponent implements OnInit {
+export class Forgot_Password implements OnInit {
   ForgotForm: any;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,private router:Router) { }
   
   ngOnInit() {
     this.ForgotForm = this.formBuilder.group({
@@ -24,6 +25,14 @@ export class Forgot_PasswordComponent implements OnInit {
   get f(){
     debugger;
     return this.ForgotForm.controls;
+  }
+
+  OnReset()
+  {
+    // this.submitted = false;
+    //   this.registerForm.reset();
+    this.router.navigate(['login']);
+      
   }
   OnSave() {
     this.submitted = true;

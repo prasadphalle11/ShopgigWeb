@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 // import { LogINComponent } from '../LOG-IN/LogIN/LogIN.component';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
  import { confirmedValidator } from '../ConfirmPasswordvalidator';
 
 @Component({
   selector: 'app-Registration_Page',
-  templateUrl: './Registration_Page.component.html',
-  styleUrls: ['./Registration_Page.component.css']
+  templateUrl: './Registration_Page.html',
+  styleUrls: ['./Registration_Page.css']
 })
-export class Registration_PageComponent implements OnInit {
+export class Registration_Page implements OnInit {
   registerForm: any;
   submitted: boolean = false;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,private router :Router) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -35,8 +36,10 @@ export class Registration_PageComponent implements OnInit {
   }
   OnReset()
   {
-    this.submitted = false;
-      this.registerForm.reset();
+    // this.submitted = false;
+    //   this.registerForm.reset();
+    this.router.navigate(['login']);
+      
   }
   OnSubmit() {
     
