@@ -1,4 +1,5 @@
 <div *ngIf="isLoggedIn$ | async as isLoggedIn" class="d-none d-sm-none d-md-block d-lg-block">
+<div class="d-none d-sm-none d-md-block d-lg-block">
     <div class="sidebar-wrapper" >
       <div class="logo-wrapper">
         <a class="logo" title="Shopgig">
@@ -8,9 +9,8 @@
             alt="Shopgig" />
         </a>
       </div>
-  
       <div class="toggle-sidebar">
-        <a class="toggle-icon" >
+        <a class="toggle-icon">
           <span class="one"></span>
           <span class="two"></span>
           <span class="three"></span>
@@ -24,18 +24,19 @@
             </a>
           </li>
           <li class="sidebar-list "  style="cursor: pointer">
-            <a  class="sidebar-link" title="Store Setup">
+                    <a href="#" routerLink="/store" class="sidebar-link" title="Store">
               <i class="icon-my-profile" style="cursor: pointer"></i>&nbsp;&nbsp;<span>Store Setup</span>
             </a>
           </li>
   
           <li class="sidebar-list" style="cursor: pointer">
-            <a  class="sidebar-link" title="Category">
+                         <a href="#" routerLink="/Category" class="sidebar-link" title="Category">
               <i class="icon-profile-management"></i>&nbsp;&nbsp;<span>Category</span>
             </a>
           </li>         
           <li class="sidebar-list"  style="cursor: pointer">
-            <a class="sidebar-link" title="Inventory">
+            <!-- <a class="sidebar-link" title="Inventory"> -->
+              <a href="#" routerLink="/Inventory" class="sidebar-link" title="Inventory">
               <i class="icon-settings"></i>&nbsp;&nbsp;<span>Inventory</span>
             </a>  
           </li>
@@ -50,6 +51,7 @@
   
       </div>
     </div>
+  </div>
   </div>
   
   <div class="d-block d-sm-block d-md-none d-lg-none">

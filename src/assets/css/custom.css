@@ -408,8 +408,9 @@ main.main-content {
 a.forgot-psw-link, a.new-mbrshp-link {
     display: block;
 }
+
 .form-group-design input.form-input[type="email"] {
-    background-image: url(../images/envelope.svg);
+    background-image: url(../images/envelope.svg) !important;
     background-repeat: no-repeat;
     background-position: center right 2px;
 }
@@ -872,3 +873,12 @@ p.copyright-text {
     color: #333333;
     font-family: 'open_sanslight';
 }
+.test-data .pi-sort:before {
+    content: "\02C4"
+    }
+    .test-data .pi-sort-down:before {
+        content: "\02C5";
+    }
+    .test-data .pi-sort-up:before {
+        content: "\e914";
+    }

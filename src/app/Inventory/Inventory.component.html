@@ -1,0 +1,59 @@
+<div class="page-body">
+  <page-header pageTitle='Inventory'></page-header>
+
+  <div class="card-body">
+     <input #SearchTerm *ngIf="!Loading" class="form-control " type="text"
+                                      name="SearchTerm"  (input)="UserDt.filterGlobal(SearchTerm.value, 'contains')"
+                                      placeholder="Search">&nbsp;&nbsp;
+
+     <p-table #UserDt [value]="InventoryList" responsiveLayout="scroll" [paginator]="true" [rows]="5"
+      [totalRecords]="totalRecords" [globalFilterFields]="['Name','Description','ShowPrice','FavNote','Price']">
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="Name" style="font-size: small;">Name<p-sortIcon field="Name">
+            </p-sortIcon>
+          </th>
+          <th pSortableColumn="Description" style="font-size: small;">Description<p-sortIcon field="Description">
+            </p-sortIcon>
+          </th>
+          <th pSortableColumn="ShowPrice" style="font-size: small;">ShowPrice<p-sortIcon field="ShowPrice">
+          </p-sortIcon>
+        </th>
+        <th pSortableColumn="FavNote" style="font-size: small;">FavNote<p-sortIcon field="FavNote">
+        </p-sortIcon>
+      </th>
+      <th pSortableColumn="Price" style="font-size: small;">Price<p-sortIcon field="Price">
+      </p-sortIcon>
+    </th>
+          <th pSortableColumn="Action" style="font-size: small;">Action
+          </th>
+        </tr>
+      </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th>InventoryName</th>
+            <th>Description</th>
+            <th>ShowPrice</th>
+            <th>FavNote</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+        <tr>
+            <td>{{product.Name}}</td>
+            <td>{{product.Description}}</td>
+            <td>{{product.ShowPrice}}</td>
+            <td>{{product.FavNote}}</td>
+            <td>{{product.Price}}</td>
+            <td>
+              <div class="example-button-row">
+            <button class="btn btn-primary">Delete</button>  &nbsp;&nbsp;
+            <!-- <button type="button" class="btn btn-danger"  >Delete</button> -->
+            </div>
+            </td>
+          
+        </tr>
+    </ng-template>
+</p-table>
+</div>

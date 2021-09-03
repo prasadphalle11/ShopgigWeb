@@ -5,9 +5,9 @@
   <title>Login Screen</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel='stylesheet' href='/assets/css/bootstrap.min.css' />
+  <!-- <link rel='stylesheet' href='/assets/css/bootstrap.min.css' />
   <link rel='stylesheet' href='/assets/css/custom.css' />
-  <link rel='stylesheet' href='/assets/css/responsive.css' />
+  <link rel='stylesheet' href='/assets/css/responsive.css' /> -->
 </head>
 
 <body class="login-page">
@@ -20,20 +20,20 @@
           </a>
         </div>
         <div class="login-form-content">
-          <h2 class="text-darkgrey text-16 font-semibold">Login with your email Id and password</h2>
+          <h2 class="text-darkgrey text-16 font-semibold">Login with your Email and Password</h2>
           <form [formGroup]="LogInForm" (ngSubmit)="OnSign()" #myform="ngForm">
-            <div class="form-group form-group-design text-left">
+            <div class="form-group-design input.form-input text-left">
               <label for="email">Email</label>
-              <input type="text" id="email" formControlName="email" class="form-control"
-                [ngClass]="{ 'is-invalid': submitted && f.email.errors }"  value="Jon.Cooper@abc.com"/>
+              <input type="email"  id="email" formControlName="email" class="form-input"
+                [ngClass]="{ 'is-invalid': submitted && f.email.errors }" >
               <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                <div *ngIf="f.email.errors.required">Please Enter the Email-ID</div>
-                <div *ngIf="f.email.errors.email">Email-Id is invalid</div>
+                <div *ngIf="f.email.errors.required">Please Enter the Email</div>
+                <div *ngIf="f.email.errors.email">Email is invalid</div>
               </div>
             </div>
             <div class="form-group form-group-design text-left">
                <label for="password">Password</label>
-              <input type="text" id="password" formControlName="password" class="form-control"
+              <input type="password" id="password" formControlName="password" class="form-input"
               [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
               <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
               <div *ngIf="f.password.errors.required">Please Enter the Password.</div>

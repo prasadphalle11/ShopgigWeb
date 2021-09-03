@@ -38,19 +38,13 @@ export class LogINComponent implements OnInit {
 OnRegister()
 {
 
-  this.router.navigate(['Registration_PageComponent']);
+  this.router.navigate(['Registration_Page']);
 }
 OnForgot()
 {
 
-  this.router.navigate(['Forgot_PasswordComponent']);
+  this.router.navigate(['Forgot_Password']);
 }
-// OnSign()
-// {
-// // this.loginservice.LogIn(this.newUserModal.Email,this.newUserModal.Password).subscribe(data=>{
-// //   this.router.navigate(['Registration_PageComponent']);
-// // });
-// }
 OnSign(): void {
   this.submitted = true;
 debugger;
