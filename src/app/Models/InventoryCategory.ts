@@ -1,7 +1,8 @@
 
 export class InventoryCategory {
-    Id:number=0;
-    StoreId:number=0;
-    InventoryName: string;
-    CreatedOn: string;
+    public Id:number;
+    public StoreId:number;
+    public InventoryName: string;
+    public CreatedOn: string;
+    public StoreName: string
    }

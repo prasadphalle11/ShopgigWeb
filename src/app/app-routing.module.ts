@@ -8,7 +8,7 @@ import { Registration_Page } from './Registration_Page/Registration_Page';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { InventoryCategoryComponent } from './InventoryCategory/InventoryCategory.component';
 import { StoreComponent } from './store/store.component';
-
+import { InventoryComponent } from './Inventory/Inventory.component';
 const routes: Routes = [
   {
     path: '',
@@ -38,6 +38,10 @@ const routes: Routes = [
      {
       path: 'store',
       component:StoreComponent
+     },
+     {
+      path: 'Inventory',
+      component:InventoryComponent
      }
     ]
 

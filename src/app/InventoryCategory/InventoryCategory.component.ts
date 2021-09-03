@@ -3,7 +3,9 @@ import { validateLocaleAndSetLanguage } from 'typescript';
 import { InventoryCategory } from '../Models/InventoryCategory';
 import { CategoryInventoryService } from '../Services/CategoryInventory.service';
 import { store } from '../Models/Store';
-import { FormBuilder , FormGroup,Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { StoreComponent } from '../store/store.component';
+import { StoreService } from '../Services/store.service';
 
 @Component({
   selector: 'app-InventoryCategory',
@@ -12,53 +14,92 @@ import { FormBuilder , FormGroup,Validators} from '@angular/forms';
 })
 export class InventoryCategoryComponent implements OnInit {
 
-  constructor(private api: CategoryInventoryService,private FormBuilder: FormBuilder) { }
+  constructor(private api: CategoryInventoryService, private service: StoreService, private FormBuilder: FormBuilder) { }
   ShopList: InventoryCategory[] = [];
+  selectedDay: string = '';
+
   InventoryCategory: InventoryCategory = new InventoryCategory();
   store: store = new store();
+  Loading: boolean = false;
   mode = ""
-  Popup: any;
+  Popupform: any;
   ShowModal: boolean = false;
   buttonShop: string = "";
-  deletemodal: string="";
-  close: boolean = false
+  deletemodal: string = "";
+  storelist: store[] = [];
+  close: boolean = false;
+  submitted = false;
+  totalRecords: number;
+  cols: any[];
+  loading: boolean = false;
+  storeId:any;
 
   ngOnInit() {
     this.CategoryAPI();
-    this.Popup = this.FormBuilder.group({
+    this.refreshStoreList();
+
+    this.Popupform = this.FormBuilder.group({
+      StoreId: ['', [Validators.required]],
       Name: ['', [Validators.required]],
-        } ,
+    } ,
 
     );
+
   }
-   DeleteShop(Id: number) {
-    this.deletemodal = "Delete Inventory";
-    this.api.deleteCategoryAPI(Id).subscribe(data => {
-     this.CategoryAPI();
-      }, (err) => {
-      alert("Error while deleting");
-      })
+
+  refreshStoreList() {
+    this.service.getStoreList().subscribe(data => {
+      this.storelist = data;
+    });
+  }
+
+  GetStoreByName(id: any) {
+    // alert(id);   
+    this.storeId=id;
+    this.service.GetStoreByName(id).subscribe(data => {
+      this.storeId;
+         console.log(this.storeId)
+    });
+   }
+
+  get f() {
+    return this.Popupform.controls;
+  }
+
+  OnSubmit() {
+
+    this.submitted = true;
+  }
+  DeleteShop(Id: number) {
     
+    this.api.deleteCategoryAPI(Id).subscribe(data => {
+      this.CategoryAPI();
+    }, (err) => {
+      alert("Error while deleting");
+    })
+
   }
   CategoryAPI() {
     this.api.getCategoryAPI().subscribe((data: any) => {
       this.ShopList = data;
     })
   }
+
   AddCategory() {
     this.mode = "C";
     this.InventoryCategory = new InventoryCategory();
     this.ShowModal = true;
-    this.buttonShop = "Add Inventory";
-  }
+    this.buttonShop = "Add Category";
+    this.storeId;
+ }
 
   EditCategory(Id) {
-    this.buttonShop = "Edit Inventory";
+    this.buttonShop = "Edit Category";
     this.api.GetByID(Id).subscribe(data => {
       this.InventoryCategory = data;
-            this.ShowModal = true;
+      this.ShowModal = true;
     });
-    console.log(this.InventoryCategory);
+
   }
   createShop() {
     if (this.mode == "C") {
@@ -67,13 +108,14 @@ export class InventoryCategoryComponent implements OnInit {
         this.ShowModal = false;
         this.CategoryAPI();
         this.close;
-      })
+        this.storeId;
+        })
     }
     else {
-             this.api.UpdateInventryCategory(this.InventoryCategory).subscribe((data: any) => {
+      this.api.UpdateInventryCategory(this.InventoryCategory).subscribe((data: any) => {
         this.ShowModal = false;
-        alert("Data updated successfully");
         this.CategoryAPI();
+        this.close;
       })
     }
   }

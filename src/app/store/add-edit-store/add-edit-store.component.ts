@@ -21,8 +21,8 @@ export class AddEditStoreComponent implements OnInit {
   }
 
   onStart(id: number, mode: string) {
-    console.log(mode);
-    console.log(id);
+    // console.log(mode);
+    // console.log(id);
     if (mode == "C") {
       this.store = new store();
     }

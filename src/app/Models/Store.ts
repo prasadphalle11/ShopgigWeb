@@ -1,6 +1,6 @@
 export class store {
     
-    public Id:number;
+    public id:number;
     public UserId:number;
     public Name:string;
     public TagLine:string;

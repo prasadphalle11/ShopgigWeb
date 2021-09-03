@@ -17,9 +17,14 @@ import { InventoryCategoryComponent } from './InventoryCategory/InventoryCategor
 import { FormsModule } from '@angular/forms';
 import { AddEditStoreComponent } from './store/add-edit-store/add-edit-store.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import {TableModule} from 'primeng/table';
+import {PaginatorModule} from 'primeng/paginator';
+import {DropdownModule} from 'primeng/dropdown';
+import { InventoryComponent } from './Inventory/Inventory.component';
+
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
 
     SidebarComponent,
@@ -31,15 +36,20 @@ import { NgxPaginationModule } from 'ngx-pagination';
     Forgot_Password,
     InventoryCategoryComponent,
     StoreComponent,
-    AddEditStoreComponent
-  ],
+    AddEditStoreComponent,
+      InventoryComponent
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    TableModule,
+    PaginatorModule,DropdownModule
+
+
 
   ],
   providers: [AuthService, AuthGuard],

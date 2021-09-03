@@ -1,118 +1,126 @@
 <div class="page-body">
   <page-header pageTitle='Category'></page-header>
   <div class="container">
-    <div class="row">
-      <div class="col order-middle">
-        <h2 style="text-decoration: wavy;">Shop By Category</h2>
-      </div>
-      <div class="col order-middle" style="text-align: left;" style="padding-left: 12em;"><br>
-        <button class="btn btn-primary" type="submit" data-toggle="modal" data-target="#StaticModal"
-          (click)="AddCategory()">Add</button>&nbsp;&nbsp;
-      </div>
+
+    <div class="example-button-row" style="padding-left: 40em;">
+      <button type="text" class="btn btn-primary " data-toggle="modal" data-target="#StaticModal"
+        (click)="AddCategory()">
+        Add Category
+      </button>
     </div>
   </div>
 
-  <table class="table table-striped" cellspacing="0" width="100%">
+  <div class="card-body">
+    <input #SearchTerm *ngIf="!Loading" class="form-control " type="text"
+                                      name="SearchTerm"  (input)="UserDt.filterGlobal(SearchTerm.value, 'contains')"
+                                      placeholder="Search">&nbsp;&nbsp;
+    <p-table #UserDt [value]="ShopList" responsiveLayout="scroll" [paginator]="true" [rows]="5"
+      [totalRecords]="totalRecords" [globalFilterFields]="['StoreName','InventoryName']">
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="InventoryName" style="font-size: small;">StoreName<p-sortIcon field="InventoryName">
+            </p-sortIcon>
+          </th>
+          <th pSortableColumn="InventoryName" style="font-size: small;">CategoryName<p-sortIcon field="InventoryName">
+            </p-sortIcon>
+          </th>
+          <th pSortableColumn="Action" style="font-size: small;">Action
+          </th>
+        </tr>
+      </ng-template>
+      <div class="login-form-content"></div>
+      <ng-template pTemplate="body" let-dataitem>
+        <tr>
+          <td>{{dataitem.StoreName}}</td>
+          <td>{{dataitem.InventoryName}}</td>
+          <td>
+            <div class="example-button-row">
+              <button class="btn btn-primary" type="submit" data-toggle="modal" (click)="EditCategory(dataitem.Id)"
+                data-target="#StaticModal">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-pencil-square" viewBox="0 0 16 16">
+                  <path
+                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                  <path fill-rule="evenodd"
+                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                </svg>
+                <!-- Edit -->
+              </button>&nbsp;&nbsp;
+              <!-- Button Delete modal -->
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                  <path fill-rule="evenodd"
+                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                </svg>
+                <!-- Delete -->
+              </button>
+              <!-- *********Model_for_Delete********* -->
+              <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel">Delete confirmation..</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <h><b>Are you sure you want to delete your account?</b></h>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                        (click)="DeleteShop(dataitem.Id)">Delete</button>
 
-    <thead>
-      <tr>
-        <th class="th-sm"><b>StoreName</b></th>
-        <th class="th-sm"><b>InventoryName</b></th>
-        <th class="th-sm"><b>CreatedOn</b></th>
-        <th class="th-sm"><b>Action</b></th>
-      </tr>
-    </thead>
-        <tbody>
-      <tr *ngFor="let user of ShopList">
-        <td>{{user.StoreName}}</td>
-        <td>{{user.InventoryName}}</td>
-        <td>{{user.CreatedOn | date:'MM/dd/yyyy'}}</td>
-        <td>
-          <div class="example-button-row">
-            <button class="btn btn-primary" type="submit" data-toggle="modal" (click)="EditCategory(user.Id)"
-              data-target="#StaticModal">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-pencil-square" viewBox="0 0 16 16">
-                <path
-                  d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                <path fill-rule="evenodd"
-                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-              </svg>
-              Edit</button>&nbsp;&nbsp;
-            <!-- Button Delete modal -->
-            <button type="button" class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
-                viewBox="0 0 16 16">
-                <path
-                  d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
-                <path fill-rule="evenodd"
-                  d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
-              </svg>
-              Delete
-            </button>
-            <!-- *********Model_for_Delete********* -->
-            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-              aria-labelledby="staticBackdropLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Delete confirmation..</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                   <h><b>Are you sure you want to delete your account?</b></h>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                      (click)="DeleteShop(user.Id)">Delete</button>
-                    
+                    </div>
                   </div>
                 </div>
               </div>
+
             </div>
+          </td>
+      </ng-template>
+    </p-table>
+    <div *ngIf="!Loading&&ShopList.length==0">
+                                      <h6 style="text-align: center;">
+         Oops ! No details found to display.</h6>
+                                  </div>
+    <!-- ------------------------ADD Edit------------------------- -->
+    <div class="modal fade" data-bs-backdrop="static" id="StaticModal" tabindex="-1" aria-labelledby="basicModalLabel"
+      aria-hidden="true">
 
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <nav>
-    <ul class="pagination justify-content-center" style ="max-width: initial;">
-        <li class="previous"><a href="#" class="page-link"> &larr; Previous</a></li>
-        <li class="page-item"><a href="#" class="page-link">1</a></li>
-        <li class="page-item"><a href="#" class="page-link">2</a></li>
-        <li class="page-item"><a href="#" class="page-link">3</a></li>
-        <li class="page-item"><a href="#" class="page-link">4</a></li>
-        <li class="page-item"><a href="#" class="page-link">5</a></li>
-        <li class=""><a href="#" class="page-link">Next &rarr;</a></li>
-    </ul>
-</nav>
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="modal-body">
 
-<!-- ------------------------ADD Edit------------------------- -->
-<div class="modal fade" data-bs-backdrop="static" id="StaticModal" tabindex="-1" aria-labelledby="basicModalLabel"
-  aria-hidden="true">
+              <div class="login-form-content">
+                <form (ngSubmit)="OnSubmit()" #myform="ngForm">
+                  <div class="form-group form-group-design text-left">
+                    <label class="form-label">Store Name</label>
+                    <select [(ngModel)]="InventoryCategory.StoreId"  id="storeId" name="Name"
+                      class="form-select">
+                      <option [value]="store.id" *ngFor="let store of storelist">{{store.Name}}</option>
+                    </select>
+                  </div>
 
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <div class="modal-body">
-          <!-- <form [formGroup]="Popup" (ngSubmit)="{{this.buttonShop}}" #myform="ngForm"></form> -->
-          <div class="p-fluid">
-            <!-- <label for="StoreId"><b>StoreId </b></label><br>
-            <input type="text" required minlength="4" class="form-control" id="name" required
-              [(ngModel)]="InventoryCategory.StoreId" name="StoreId"><br><br> -->
-            <label for="Name"><b>InventoryName</b></label><br>
-            <input type="text" class="form-control" id="name" required [(ngModel)]="InventoryCategory.InventoryName"
-              name="Name"><br><br>
-            <!-- <label for="CreatedOn"><b>CreatedOn </b></label><br>
-            <input type="date" class="form-control" id="date" required [(ngModel)]="InventoryCategory.CreatedOn"
-              name="createdon"><br><br> -->
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label><br><br>
-            <button class="btn btn-primary" (click)="createShop()" data-dismiss="modal">{{this.buttonShop}}</button>
-            &nbsp;&nbsp;
-            <button type="submit" class="btn btn-primary" data-dismiss="modal">Close</button>
+                  <div class="form-group form-group-design text-left">
+                    <label class="form-label" for="CategoryName">Category Name</label>
+                    <input type="text" id="categoryName" class="form-control" id="Categoryname" name="fieldName"
+                      class="form-control" required [(ngModel)]="InventoryCategory.InventoryName" />
+                  </div>
+
+                  <div>
+                    <button type="submit" class="btn btn-primary" (click)="createShop()"
+                      data-dismiss="modal">{{this.buttonShop}}</button>
+                    &nbsp;&nbsp;
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal">Close</button>
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
       </div>

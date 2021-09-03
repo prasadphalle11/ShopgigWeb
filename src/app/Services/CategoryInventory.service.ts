@@ -27,7 +27,7 @@ export class CategoryInventoryService {
  }
  UpdateInventryCategory(val: InventoryCategory): Observable<object> 
  {
-   return this.http.put<any>(`https://localhost:5001/UpdateInventoryCategoryById?=Id`,val)
+   return this.http.post<any>(`https://localhost:5001/UpdateInventoryCategory`,val)
  }
 
  GetByID(Id: number): Observable<any> {

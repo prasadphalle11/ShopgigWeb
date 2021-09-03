@@ -873,3 +873,12 @@ p.copyright-text {
     color: #333333;
     font-family: 'open_sanslight';
 }
+.test-data .pi-sort:before {
+    content: "\02C4"
+    }
+    .test-data .pi-sort-down:before {
+        content: "\02C5";
+    }
+    .test-data .pi-sort-up:before {
+        content: "\e914";
+    }

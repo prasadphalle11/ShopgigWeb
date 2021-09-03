@@ -28,4 +28,8 @@ export class StoreService {
   }
 
 
+​GetStoreByName(val:any):Observable<any[]>{
+
+return this.http.get<any>(this.APIUrl+ 'GetStoreByName?Name='+val)
+}
 }

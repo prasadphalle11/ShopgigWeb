@@ -1,4 +1,4 @@
-
+<div *ngIf="isLoggedIn$ | async as isLoggedIn" class="d-none d-sm-none d-md-block d-lg-block">
 <div class="d-none d-sm-none d-md-block d-lg-block">
     <div class="sidebar-wrapper" >
       <div class="logo-wrapper">
@@ -35,7 +35,8 @@
             </a>
           </li>         
           <li class="sidebar-list"  style="cursor: pointer">
-            <a class="sidebar-link" title="Inventory">
+            <!-- <a class="sidebar-link" title="Inventory"> -->
+              <a href="#" routerLink="/Inventory" class="sidebar-link" title="Inventory">
               <i class="icon-settings"></i>&nbsp;&nbsp;<span>Inventory</span>
             </a>  
           </li>
@@ -50,6 +51,7 @@
   
       </div>
     </div>
+  </div>
   </div>
   
   <div class="d-block d-sm-block d-md-none d-lg-none">
